@@ -24,6 +24,8 @@ submitForm.addEventListener('submit', (e) => {
     if(inputValue) {
       fetchCountryData(inputValue);
       submitForm.reset();
+    } else {
+      alert('Please, enter valid country')
     }
     
 })
