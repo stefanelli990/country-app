@@ -1,26 +1,33 @@
 <template>
   <main>
-    <div class="flex items-center justify-between my-12 space-x-8">
-      <div class="w-1/2">
-        <h1 class="text-5xl font-bold my-4">What's for dinner tonight? Let us help you decide.</h1>
+    <div class="flex items-center justify-between my-12 space-x-4">
+      <div class="max-w-md">
+        <h1 class="text-4xl font-bold my-4">What's for dinner tonight? Let us help you decide.</h1>
         <p class="mb-4 text-xl">Search recipes for your favorite desserts, appetizers, main dish recipes, and more</p>
-        <AppSearch/>
+        <AppSearch @search="searchRecipes" />
       </div>
-      <div class="w-1/2">
-        <img class="w-full" src="../assets/chef-illustration.svg" alt="">
+      <img class="w-[450px]" src="../assets/chef-illustration.svg" alt="">
+    </div>
+    <div v-if="searchedRecipes.length">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-3xl font-semibold">Searched results for "{{ searchedTerm }}"</h2>
       </div>
-    </div>
-    <div class="flex justify-between items-center mb-6">
-      <h2 class="text-2xl font-semibold">Random Picks</h2>
-    </div>
-    <div v-if="recipes.length">
       <div class="grid grid-cols-3 gap-4 mb-4">
-        <RecipeItem v-for="recipe in recipes" :key="recipe.id" :recipe="recipe"/>
+        <RecipeItem v-for="recipe in searchedRecipes" :key="recipe.id" :recipe="recipe" />
       </div>
     </div>
-    <div v-else>
-      Loading...
+    <div v-else-if="recipes.length">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-3xl font-semibold">Random Picks</h2>
+      </div>
+      <div class="grid grid-cols-3 gap-4 mb-4">
+        <RecipeItem v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
+      </div>
     </div>
+    <div v-else-if="!recipes.length || !searchedRecipes.length">
+      <LoadingSpinner/>
+    </div>
+    
   </main>
 </template>
 
@@ -28,13 +35,17 @@
 import { onMounted, ref } from 'vue'
 import AppSearch from '../components/AppSearch.vue'
 import RecipeItem from '../components/RecipeItem.vue'
+import LoadingSpinner from '../components/LoadingSpinner.vue'
 
 const recipes = ref([])
+const searchedRecipes = ref([])
+const searchedTerm = ref([])
 const error = ref(null)
+const noRecipeFound = ref(false)
 
 const getRecipes = async () => {
   try {
-    const numberOfRecipes = 6; 
+    const numberOfRecipes = 3;
     const randomRecipes = [];
 
     for (let i = 0; i < numberOfRecipes; i++) {
@@ -43,11 +54,35 @@ const getRecipes = async () => {
         const data = await response.json();
         if (data.meals) {
           randomRecipes.push(data.meals[0]);
-          console.log(data.meals[0])
         }
       }
     }
     recipes.value = randomRecipes;
+  } catch (err) {
+    error.value = err.message;
+  }
+}
+
+const searchRecipes = async (term) => {
+  if (!term.trim()) {
+    alert('Please enter a search term');
+    return;
+  }
+  searchedTerm.value = term
+  
+  try {
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`);
+    if (response.ok) {
+      const data = await response.json();
+      if (data.meals) {
+        searchedRecipes.value = data.meals;
+        noRecipeFound.value = false
+      } else {
+        searchedRecipes.value = [];
+        console.log('no recipe found')
+        noRecipeFound.value = true
+      }
+    }
   } catch (err) {
     error.value = err.message;
   }
