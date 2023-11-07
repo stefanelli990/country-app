@@ -1,7 +1,7 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <main>
+    <h1 class="text-4xl my-16 font-bold">Favorite Recipes</h1>
+  </main>
 </template>
 
 

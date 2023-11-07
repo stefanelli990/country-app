@@ -8,26 +8,38 @@
       </div>
       <img class="w-[450px]" src="../assets/chef-illustration.svg" alt="">
     </div>
+
+    <!-- displays radnom recipes -->
+    <div v-if="showRandomRecipes">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-semibold">Random Picks</h2>
+      </div>
+      <div class="grid grid-cols-3 gap-4 mb-4">
+     
+          <RecipeItem v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
+       
+      </div>
+    </div>
+
+    <!-- displays searched recipes -->
     <div v-if="searchedRecipes.length">
       <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-semibold">Searched results for "{{ searchedTerm }}"</h2>
+        <h2 class="text-2xl font-semibold">There are {{ searchedRecipes.length }} {{ searchedRecipes.length > 1 ? 'recipes' : 'recipe' }} for "{{ searchedTerm }}"</h2>
       </div>
       <div class="grid grid-cols-3 gap-4 mb-4">
         <RecipeItem v-for="recipe in searchedRecipes" :key="recipe.id" :recipe="recipe" />
       </div>
     </div>
-    <div v-else-if="recipes.length">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-semibold">Random Picks</h2>
-      </div>
-      <div class="grid grid-cols-3 gap-4 mb-4">
-        <RecipeItem v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
-      </div>
-    </div>
-    <div v-else-if="!recipes.length || !searchedRecipes.length">
-      <LoadingSpinner/>
+   
+    <!-- no recipes found -->
+    <div v-if="noRecipeFound">
+      <h2 class="text-2xl font-semibold">No recipes found for "{{ searchedTerm }}"</h2>
     </div>
     
+    <div v-if="!recipes.length">
+      Loading...
+    </div>
+        
   </main>
 </template>
 
@@ -35,13 +47,14 @@
 import { onMounted, ref } from 'vue'
 import AppSearch from '../components/AppSearch.vue'
 import RecipeItem from '../components/RecipeItem.vue'
-import LoadingSpinner from '../components/LoadingSpinner.vue'
 
 const recipes = ref([])
 const searchedRecipes = ref([])
-const searchedTerm = ref([])
-const error = ref(null)
+const searchedTerm = ref('')
 const noRecipeFound = ref(false)
+const showRandomRecipes = ref(true)
+
+
 
 const getRecipes = async () => {
   try {
@@ -54,12 +67,15 @@ const getRecipes = async () => {
         const data = await response.json();
         if (data.meals) {
           randomRecipes.push(data.meals[0]);
+          console.log(data.meals)
         }
       }
     }
     recipes.value = randomRecipes;
+    
+   
   } catch (err) {
-    error.value = err.message;
+    console.log(err)
   }
 }
 
@@ -68,10 +84,11 @@ const searchRecipes = async (term) => {
     alert('Please enter a search term');
     return;
   }
-  searchedTerm.value = term
   
   try {
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`);
+    searchedTerm.value = term
+    showRandomRecipes.value = false
     if (response.ok) {
       const data = await response.json();
       if (data.meals) {
@@ -84,7 +101,7 @@ const searchRecipes = async (term) => {
       }
     }
   } catch (err) {
-    error.value = err.message;
+    console.log(err)
   }
 }
 
