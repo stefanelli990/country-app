@@ -23,13 +23,16 @@
                         <p class="text-gray-400">{{ extractDomainName(recipe.strSource) }}</p>
                     </div>
                     <div class="flex space-x-2">
-                        <button>
+                        <button  v-if="recipe.isFavorite" @click="remove">
+                          <Icon width="36" height="36" icon="ion:heart-sharp" class="text-primaryColor"/>
+                        </button>
+                        <button  v-if="!recipe.isFavorite" @click="favorite">
                           <Icon width="36" height="36" icon="ion:heart-outline" />
                         </button>
-                        <span class="font-semibold">Add to <br> Favorite</span>
+                        <span class="font-semibold">{{ recipe.isFavorite ? 'Remove from' : 'Add to' }} <br> Favorite</span>
                     </div>
                 </div>
-                <h2 class="text-2xl font-semibold mb-8">Instructions:</h2>
+                <h2 class="text-2xl font-semibold mb-4">Instructions:</h2>
                 <p class="mb-8 font-normal">{{ recipe.strInstructions }}</p>
                 <!-- <h2 class="text-2xl font-semibold mb-8">Video: How to make {{ recipe.strMeal }}</h2> -->
             </div>
@@ -42,20 +45,37 @@
       
         </div>
       </div>
-      <div v-else>
+      <!-- <div v-else>
         <p>Loading...</p>
-      </div>
+      </div> -->
     </div>
   </template>
   
   <script setup>
   import { ref, onMounted, computed } from 'vue';
-  import { useRoute, RouterLink } from 'vue-router';
+  import { useRoute } from 'vue-router';
   import { Icon } from '@iconify/vue'
+  import { useRecipeStore } from '../stores/recipeStore';
+
+  const recipeStore = useRecipeStore()
   
   const route = useRoute();
-  const id = ref(route.params.id);
   const recipe = ref(null);
+  const id = ref(route.params.id);
+
+  const favorite = () => {
+    // console.log(recipe)
+    
+    recipe.value.isFavorite = true
+    recipeStore.addToFavorite(recipe.value);
+    console.log(recipe.value.isFavorite)
+  }
+
+  const remove = () => {
+    recipe.value.isFavorite = false
+    recipeStore.removeFromFavorite(recipe.value);
+    console.log(recipe.value.isFavorite)
+  }
   
   const fetchRecipe = async () => {
     try {

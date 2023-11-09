@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,7 +12,7 @@
         @apply bg-slate-50 font-medium;
     }
     main {
-        @apply max-w-5xl mx-auto px-4;
+        @apply max-w-5xl mx-auto my-4 px-4;
     }
 }
 

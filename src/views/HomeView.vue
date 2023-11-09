@@ -14,7 +14,7 @@
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-2xl font-semibold">Random Picks</h2>
       </div>
-      <div class="grid grid-cols-3 gap-4 mb-4">
+      <div class="grid grid-cols-3 gap-4">
      
           <RecipeItem v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
        
@@ -26,7 +26,7 @@
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-2xl font-semibold">There are {{ searchedRecipes.length }} {{ searchedRecipes.length > 1 ? 'recipes' : 'recipe' }} for "{{ searchedTerm }}"</h2>
       </div>
-      <div class="grid grid-cols-3 gap-4 mb-4">
+      <div class="grid grid-cols-3 gap-4">
         <RecipeItem v-for="recipe in searchedRecipes" :key="recipe.id" :recipe="recipe" />
       </div>
     </div>
@@ -36,9 +36,9 @@
       <h2 class="text-2xl font-semibold">No recipes found for "{{ searchedTerm }}"</h2>
     </div>
     
-    <div v-if="!recipes.length">
+    <!-- <div v-if="!recipes.length">
       Loading...
-    </div>
+    </div> -->
         
   </main>
 </template>
@@ -66,8 +66,9 @@ const getRecipes = async () => {
       if (response.ok) {
         const data = await response.json();
         if (data.meals) {
+          
           randomRecipes.push(data.meals[0]);
-          console.log(data.meals)
+       
         }
       }
     }
@@ -93,6 +94,10 @@ const searchRecipes = async (term) => {
       const data = await response.json();
       if (data.meals) {
         searchedRecipes.value = data.meals;
+        const recipe = data.meals[0];
+          // Add the isFavorite property
+          recipe.isFavorite = false;
+          recipes.value.push(data.meals[0])
         noRecipeFound.value = false
       } else {
         searchedRecipes.value = [];
