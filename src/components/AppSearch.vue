@@ -1,16 +1,50 @@
 <template>
-    <form @submit.prevent="$emit('search', searchTerm)" class="relative w-full mb-8">
-        <Icon class="text-gray-400 absolute top-1/2 left-4 -translate-y-1/2" width="24" height="24" icon="mdi:magnify" />
-        <input v-model="searchTerm" class="bg-white rounded-full w-full p-3 pl-11 border border-gray-200 outline-primaryColor placeholder:font-normal" type="text" placeholder="Search...">
-    </form>
+    <div class="flex justify-between items-center my-12 text-sm">
+        <form @submit.prevent="$emit('search', searchTerm)" class="relative w-full max-w-md">
+            <Icon class="text-gray-400 absolute top-1/2 left-4 -translate-y-1/2" width="24" height="24" icon="mdi:magnify" />
+            <input v-model="searchTerm" class="bg-white rounded-md w-full p-4 pl-12 border border-gray-200 outline-blue-600 placeholder:font-normal" type="text" placeholder="Search for a country...">
+        </form>
+        <div class="relative w-44">
+            <button @click="toggleDropdown" class="p-4 bg-white rounded-md flex items-center justify-between space-x-4 w-full" ref="toggle">
+                <span>{{ countriesStore.filter }}</span>
+                <Icon icon="tabler:chevron-down" />
+            </button>
+            <ul v-show="dropdownIsShown" class="absolute top-12 left-0 bg-white  w-full rounded-md cursor-pointer" ref="dropdown-content">
+                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'All'">All</li>
+                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'Africa'">Africa</li>
+                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'Asia'">Asia</li>
+                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'Europe'">Europe</li>
+                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'North America'">North America</li>
+                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'South America'">South America</li>
+                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'Oceania'">Oceania</li>
+            </ul>
+        </div>
+    </div>
 </template>
 
 <script setup>
+import { useCountriesStore } from '../stores/countriesStore'
 import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
+import { onClickOutside } from '@vueuse/core'
+
+const countriesStore = useCountriesStore()
 
 const emit = defineEmits(['search'])
 
 const searchTerm = ref('')
+const dropdownIsShown = ref(false)
+const dropdownContent = ref(null)
+const toggle = ref(null)
+
+const toggleDropdown = () => {
+    dropdownIsShown.value = !dropdownIsShown.value
+}
+
+onClickOutside([dropdownContent], () => {
+    dropdownIsShown.value = false
+}, {
+  ignore: [toggle]
+});
 
 </script>

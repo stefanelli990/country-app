@@ -55,9 +55,7 @@
   import { ref, onMounted, computed } from 'vue';
   import { useRoute } from 'vue-router';
   import { Icon } from '@iconify/vue'
-  import { useRecipeStore } from '../stores/recipeStore';
 
-  const recipeStore = useRecipeStore()
   
   const route = useRoute();
   const recipe = ref(null);
@@ -83,7 +81,9 @@
       if (response.ok) {
         const data = await response.json();
         if (data.meals) {
+          
           recipe.value = data.meals[0];
+        
         }
       }
     } catch (err) {
