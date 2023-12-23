@@ -1,9 +1,9 @@
 <template>
     <div class="flex justify-between items-center my-12 text-sm">
-        <form @submit.prevent="$emit('search', searchTerm)" class="relative w-full max-w-md">
+        <div class="relative w-full max-w-md">
             <Icon class="text-gray-400 absolute top-1/2 left-4 -translate-y-1/2" width="24" height="24" icon="mdi:magnify" />
-            <input v-model="searchTerm" class="bg-white rounded-md w-full p-4 pl-12 border border-gray-200 outline-blue-600 placeholder:font-normal" type="text" placeholder="Search for a country...">
-        </form>
+            <input v-model="countriesStore.searchTerm" class="bg-white rounded-md w-full p-4 pl-12 border border-gray-200 outline-blue-600 placeholder:font-normal" type="text" placeholder="Search for a country...">
+        </div>
         <div class="relative w-44">
             <button @click="toggleDropdown" class="p-4 bg-white rounded-md flex items-center justify-between space-x-4 w-full" ref="toggle">
                 <span>{{ countriesStore.filter }}</span>
@@ -30,9 +30,6 @@ import { onClickOutside } from '@vueuse/core'
 
 const countriesStore = useCountriesStore()
 
-const emit = defineEmits(['search'])
-
-const searchTerm = ref('')
 const dropdownIsShown = ref(false)
 const dropdownContent = ref(null)
 const toggle = ref(null)
@@ -46,5 +43,7 @@ onClickOutside([dropdownContent], () => {
 }, {
   ignore: [toggle]
 });
+
+
 
 </script>
