@@ -9,14 +9,13 @@ export const useCountriesStore = defineStore('countriesStore', {
     }
   },
   getters: {
-   
     filterCountries: (state) => {
       const search = state.searchTerm.toLowerCase().trim()
   
       if(search === '') {
         return state.countriesData
       } else {
-        return state.countriesData.filter(country => country.name.common.toLowerCase().includes(search))
+        return state.countriesData.filter(country => country.name.common.toLowerCase().startsWith(search))
       }
      },
      filterByContinent: (state) => (continent) => {
