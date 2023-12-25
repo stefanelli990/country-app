@@ -28,8 +28,8 @@ const getFilteredCountries = computed(() => {
 const fetchData = async () => {
   isLoading.value = true;
   try {
-    const response = await fetch('https://restcountries.com/v3.1/all');
-    const data = await response.json();
+    const response = await fetch('https://restcountries.com/v3.1/all')
+    const data = await response.json()
     countriesStore.countriesData = data.sort((a, b) => a.name.common.localeCompare(b.name.common))
   } catch (error) {
     console.error('Error fetching data:', error)
