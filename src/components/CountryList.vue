@@ -1,7 +1,9 @@
+<!-- CountryList.vue -->
+
 <template>
     <div v-if="isLoading">Loading...</div>
-    <ul v-else-if="getFilteredCountries.length > 0" class="grid grid-cols-3 gap-4">
-        <CountryItem v-for="(country, index) in getFilteredCountries" :key="country.id || index" :name="country.name.common" :flag="country.flags.svg" :coat-of-arms="country.coatOfArms.svg" :population="country.population" :capital="country.capital && country.capital.length > 0 ? country.capital[0] : 'N/A'" :area="country.area" :code="country.cca2"/>
+    <ul v-else-if="getFilteredCountries.length > 0" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <CountryItem v-for="(country, index) in getFilteredCountries" :key="country.id || index" :name="country.name.common" :flag="country.flags.svg" :coat-of-arms="country.coatOfArms.svg" :population="country.population" :capital="country.capital && country.capital.length > 0 ? country.capital[0] : 'N/A'" :area="country.area" :code="country.cca2" @click="goToCountryDetails(country.cca2)"/>
     </ul>
     <div v-else>
         No countries found for the searched term.
@@ -10,10 +12,17 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useCountriesStore } from '../stores/countriesStore'
 import CountryItem from './CountryItem.vue'
 
 const countriesStore = useCountriesStore()
+const router = useRouter();
+
+const goToCountryDetails = (cca2) => {
+  router.push(`/${cca2}`);
+
+};
 
 const isLoading = ref(true)
 

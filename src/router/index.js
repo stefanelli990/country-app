@@ -1,7 +1,8 @@
+// index.js
+
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import CompareView from '../views/CompareView.vue'
-import SingleRecipeView from '../views/SingleRecipeView.vue'
+import CountryDetailsView from '../views/CountryDetailsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,15 +12,12 @@ const router = createRouter({
       name: 'home',
       component: HomeView
     },
+    // Add a dynamic route for country details
     {
-      path: '/compare',
-      name: 'compare',
-      component: () => import('../views/CompareView.vue')
-    },
-    {
-      path: '/singleRecipe/:id',
-      name: 'singleRecipe',
-      component: () => import('../views/SingleRecipeView.vue')
+      path: '/:cca2',
+      name: 'country-details',
+      component: CountryDetailsView,
+      props: true // Pass route params as props to the component
     }
   ]
 })

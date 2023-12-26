@@ -9,7 +9,7 @@
         @apply font-montserrat;
       }
     body {
-        @apply bg-slate-50 font-medium;
+        @apply bg-slate-50 font-medium text-sm;
     }
     main {
         @apply max-w-6xl mx-auto my-4 px-4;

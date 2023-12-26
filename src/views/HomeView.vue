@@ -1,3 +1,5 @@
+<!-- HomeView.vue -->
+
 <template>
   <main>
     <AppSearch/>
@@ -9,7 +11,7 @@
 
 
 import AppSearch from '../components/AppSearch.vue'
-import CountryList from '../components/CountryList.vue';
+import CountryList from '../components/CountryList.vue'
 
 
 

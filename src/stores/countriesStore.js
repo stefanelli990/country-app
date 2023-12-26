@@ -1,9 +1,11 @@
+// countriesStore.js
+
 import { defineStore } from 'pinia'
 
 export const useCountriesStore = defineStore('countriesStore', {
   state: () => {
     return { 
-      countriesData: ([]),
+      countriesData: [],
       filter: 'All',
       searchTerm: '',
     }
