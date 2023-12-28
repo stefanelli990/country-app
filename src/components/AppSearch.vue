@@ -14,6 +14,7 @@
             <ul v-show="dropdownIsShown" class="absolute top-14 left-0 bg-white w-full rounded-md cursor-pointer overflow-hidden shadow-md shadow-slate-200" ref="dropdown-content">
                 <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'All'">All</li>
                 <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'Africa'">Africa</li>
+                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'Antarctica'">Antarctica</li>
                 <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'Asia'">Asia</li>
                 <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'Europe'">Europe</li>
                 <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'North America'">North America</li>

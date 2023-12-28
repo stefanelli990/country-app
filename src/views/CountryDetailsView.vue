@@ -27,7 +27,7 @@
           </div>
           <div class="flex flex-col">
             <div class="text-gray-500">Languages</div>
-            <div class="font-semibold">{{ Object.values(countryDetails.languages).join(', ') }}</div>
+            <div class="font-semibold">{{ languageDetails }}</div>
           </div>
           <div class="flex flex-col">
             <div class="text-gray-500">Area</div>
@@ -39,11 +39,11 @@
           </div>
           <div class="flex flex-col">
             <div class="text-gray-500">Capital</div>
-            <div class="font-semibold">{{ Object.values(countryDetails.capital).join(', ') }}</div>
+            <div class="font-semibold">{{ capitalDetails }}</div>
           </div>
           <div class="flex flex-col">
             <div class="text-gray-500">Currency</div>
-            <div class="font-semibold">{{ Object.values(countryDetails.currencies)[0].name }}</div>
+            <div class="font-semibold">{{ currenciesDetails }}</div>
           </div>
         </div>
       </div>
@@ -53,6 +53,7 @@
 
 
 <script setup>
+
 import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { Icon } from '@iconify/vue'
@@ -80,7 +81,32 @@ const countryCode = computed(() => {
   return `fi fi-${countryDetails.value.cca2.toLowerCase()}`
 })
 
+const capitalDetails = computed(() => {
+  if(countryDetails.value && countryDetails.value.capital) {
+    return Object.values(countryDetails.value.capital).join(', ')
+  } else {
+    return 'N/A'
+  }
+})
+
+const languageDetails = computed(() => {
+  if(countryDetails.value && countryDetails.value.languages) {
+    return Object.values(countryDetails.value.languages).join(', ')
+  } else {
+    return 'N/A'
+  }
+})
+
+const currenciesDetails = computed(() => {
+  if(countryDetails.value && countryDetails.value.currencies) {
+    return Object.values(countryDetails.value.currencies)[0].name
+  } else {
+    return 'N/A'
+  }
+})
+
 onMounted(() => {
   fetchCountryDetails()
 })
+
 </script>
