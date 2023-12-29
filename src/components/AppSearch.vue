@@ -5,6 +5,9 @@
         <div class="relative w-full sm:max-w-sm md:max-w-md">
             <Icon class="text-gray-400 absolute top-1/2 left-4 -translate-y-1/2" width="24" height="24" icon="mdi:magnify" />
             <input v-model="countriesStore.searchTerm" class="bg-white rounded-md w-full p-4 pl-12 border border-slate-200 outline-blue-600 placeholder:font-normal" type="text" placeholder="Search for a country...">
+            <button v-if="countriesStore.searchTerm" @click="clearInput" class="absolute top-1/2 right-2 -translate-y-1/2 text-blue-600 p-2">
+                <Icon icon="carbon:close-filled" width="18" height="18"/>
+            </button>
         </div>
         <div class="relative w-full  sm:w-44 z-10">
             <button @click="toggleDropdown" class="p-4 bg-white rounded-md shadow-md shadow-slate-200 flex items-center justify-between space-x-4 w-full" ref="toggle">
@@ -37,6 +40,7 @@ const dropdownIsShown = ref(false)
 const dropdownContent = ref(null)
 const toggle = ref(null)
 
+
 const toggleDropdown = () => {
     dropdownIsShown.value = !dropdownIsShown.value
 }
@@ -46,5 +50,9 @@ onClickOutside([dropdownContent], () => {
 }, {
   ignore: [toggle]
 });
+
+const clearInput = () => {
+    countriesStore.searchTerm = ''
+}
 
 </script>

@@ -9,44 +9,40 @@
     </router-link>
     </div>
     <div v-if="isLoading" class="text-center mt-4">Loading...</div>
-    <div v-else-if="countryDetails" class="grid sm:grid-cols-2  gap-4">
-      <div class="col-span-1">
-        <div class="pb-6 flex justify-center sm:block border-b border-gray-200 sm:pb-0 sm:border-b-0">
-          <span :class="countryCode" class="text-[50vw] sm:text-[200px] md:text-[250px] rounded-lg"></span>
+    <div v-else-if="countryDetails" class="flex flex-col space-y-8 md:items-center md:space-x-12 md:flex-row md:space-y-0">
+        <div class="flex justify-center">
+          <span :class="countryCode" class="text-[50vw] sm:text-[250px] rounded-lg border border-gray-200"></span>
         </div>
-      </div>
-      <div class="col-span-1">
-        <div class="space-y-2 text-md sm:pl-8 sm:border-l border-gray-200">
-          <div class="flex flex-col">
-            <div class="text-gray-500">Official Name</div>
-            <div class="font-semibold">{{ countryDetails.name.official }}</div>
+        <div class="flex flex-col space-y-2">
+          <div>
+            <span class="text-gray-500">Official Name: </span>
+            <span class="font-semibold">{{ countryDetails.name.official }}</span>
           </div>
-          <div class="flex flex-col">
-            <div class="text-gray-500">Continent</div>
-            <div class="font-semibold">{{ countryDetails.continents[0] }}</div>
+          <div>
+            <span class="text-gray-500">Continent: </span>
+            <span class="font-semibold">{{ countryDetails.continents[0] }}</span>
           </div>
-          <div class="flex flex-col">
-            <div class="text-gray-500">Languages</div>
-            <div class="font-semibold">{{ languageDetails }}</div>
+          <div>
+            <span class="text-gray-500">Languages: </span>
+            <span class="font-semibold">{{ countryDetails.languages ? Object.values(countryDetails.languages).join(', ') : 'N/A' }}</span>
           </div>
-          <div class="flex flex-col">
-            <div class="text-gray-500">Area</div>
-            <div class="font-semibold">{{ countryDetails.area.toLocaleString() }} km<sup>2</sup></div>
+          <div>
+            <span class="text-gray-500">Area: </span>
+            <span class="font-semibold">{{ countryDetails.area.toLocaleString() }} km<sup>2</sup></span>
           </div>
-          <div class="flex flex-col">
-            <div class="text-gray-500">Population</div>
-            <div class="font-semibold">{{ countryDetails.population.toLocaleString() }}</div>
+          <div>
+            <span class="text-gray-500">Population: </span>
+            <span class="font-semibold">{{ countryDetails.population.toLocaleString() }}</span>
           </div>
-          <div class="flex flex-col">
-            <div class="text-gray-500">Capital</div>
-            <div class="font-semibold">{{ capitalDetails }}</div>
+          <div>
+            <span class="text-gray-500">Capital: </span>
+            <span class="font-semibold">{{ countryDetails.capital ? Object.values(countryDetails.capital).join(', ') : 'N/A' }}</span>
           </div>
-          <div class="flex flex-col">
-            <div class="text-gray-500">Currency</div>
-            <div class="font-semibold">{{ currenciesDetails }}</div>
+          <div>
+            <span class="text-gray-500">Currency: </span>
+            <span class="font-semibold">{{ countryDetails.currencies ? Object.values(countryDetails.currencies)[0].name : 'N/A' }}</span>
           </div>
         </div>
-      </div>
     </div>
   </main>
 </template>
@@ -81,29 +77,6 @@ const countryCode = computed(() => {
   return `fi fi-${countryDetails.value.cca2.toLowerCase()}`
 })
 
-const capitalDetails = computed(() => {
-  if(countryDetails.value && countryDetails.value.capital) {
-    return Object.values(countryDetails.value.capital).join(', ')
-  } else {
-    return 'N/A'
-  }
-})
-
-const languageDetails = computed(() => {
-  if(countryDetails.value && countryDetails.value.languages) {
-    return Object.values(countryDetails.value.languages).join(', ')
-  } else {
-    return 'N/A'
-  }
-})
-
-const currenciesDetails = computed(() => {
-  if(countryDetails.value && countryDetails.value.currencies) {
-    return Object.values(countryDetails.value.currencies)[0].name
-  } else {
-    return 'N/A'
-  }
-})
 
 onMounted(() => {
   fetchCountryDetails()
