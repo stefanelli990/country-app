@@ -8,7 +8,7 @@
       <span>Back</span>
     </router-link>
     </div>
-    <div v-if="isLoading" class="text-center mt-4">Loading...</div>
+    <LoadingSpinner v-if="isLoading"/>
     <div v-else-if="countryDetails" class="flex flex-col space-y-8 md:items-center md:space-x-12 md:flex-row md:space-y-0">
         <div class="flex justify-center">
           <span :class="countryCode" class="text-[50vw] sm:text-[250px] rounded-lg border border-gray-200"></span>
@@ -53,6 +53,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { Icon } from '@iconify/vue'
+import LoadingSpinner from '../components/LoadingSpinner.vue';
 
 const countryDetails = ref(null)
 const isLoading = ref(false)
