@@ -1,29 +1,28 @@
 # country-app
 
-This template should help get you started developing with Vue 3 in Vite.
+## Description:
 
-## Recommended IDE Setup
+A straightforward web application that allows users to search for information about countries. The app provides details such as the country's name, capital, population, and more.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+**[Live Preview](https://harmonious-babka-904b55.netlify.app/BD)**: Try the Country App live.
 
-## Customize configuration
+## Features:
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- **Search Functionality**: Users can easily search for countries by entering the country name in the search bar.
+- **Country Details**: Display comprehensive information about the selected country, including its capital, population, area, and more.
+- **Responsive Design**: The app is designed to work seamlessly on various devices, ensuring a pleasant user experience.
 
-## Project Setup
+## Technologies Used:
 
-```sh
-npm install
-```
+- **Vue.js** for building the frontend of the application.
+- **Tailwind CSS** for styling and layout design.
+- **Pinia** for state management.
 
-### Compile and Hot-Reload for Development
+## Installation
 
-```sh
-npm run dev
-```
+To run this project locally, follow these steps:
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+1. Clone the repository.
+2. Install the required dependencies using `npm install`.
+3. Start the development server with `npm run dev`.
+4. Open your browser and navigate to `http://localhost:5173` to use the app.
