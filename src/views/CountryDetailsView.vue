@@ -61,7 +61,8 @@ const route = useRoute()
 
 const fetchCountryDetails = async () => {
   const routeParam = route.params.cca2
-  isLoading.value = true;
+  isLoading.value = true
+  
   try {
     const response = await fetch(`https://restcountries.com/v3.1/alpha/${routeParam}`)
     const data = await response.json()
