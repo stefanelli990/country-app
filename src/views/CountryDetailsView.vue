@@ -67,9 +67,6 @@ const fetchCountryDetails = async () => {
     const data = await response.json()
     countryDetails.value = data[0]
     console.log(countryDetails.value)
-
-    // Store routeParam in local storage
-    localStorage.setItem('routeParams', routeParam);
   } catch (error) {
     console.error('Error fetching country details:', error)
   } finally {
@@ -83,12 +80,6 @@ const countryCode = computed(() => {
 
 
 onMounted(() => {
-  // Retrieve routeParam from local storage
-  const storedRouteParam = localStorage.getItem('routeParams');
-  if (storedRouteParam) {
-    // If routeParam is found in local storage, set it to the current route
-    route.params.cca2 = storedRouteParam;
-  }
   fetchCountryDetails()
 })
 
