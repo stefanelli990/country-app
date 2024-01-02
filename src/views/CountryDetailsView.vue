@@ -3,7 +3,7 @@
 <template>
   <main class="max-w-3xl">
     <div class="flex justify-start my-12">
-      <router-link to="/" class="text-blue-600 space-x-1 flex items-center text-xl">
+      <router-link to="/" class="space-x-1 flex items-center text-lg">
       <Icon icon="charm:chevron-left" />
       <span>Back</span>
     </router-link>
@@ -11,7 +11,7 @@
     <LoadingSpinner v-if="isLoading"/>
     <div v-else-if="countryDetails" class="flex flex-col space-y-8 md:items-center md:space-x-12 md:flex-row md:space-y-0">
         <div class="flex justify-center">
-          <span :class="countryCode" class="text-[50vw] sm:text-[250px] rounded-lg border border-gray-200"></span>
+          <span :class="countryCode" class="text-[50vw] sm:text-[250px] rounded-lg border border-gray-200 dark:border-0"></span>
         </div>
         <div class="flex flex-col space-y-2">
           <div>

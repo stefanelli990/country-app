@@ -1,28 +1,28 @@
 <!-- AppSearch.vue -->
 
 <template>
-    <div class="flex flex-col space-y-4 justify-between items-center my-12 sm:flex-row sm:space-y-0">
-        <div class="relative w-full sm:max-w-sm md:max-w-md">
+    <div class="flex flex-col space-y-4 justify-between items-center py-12 sm:flex-row sm:space-y-0">
+        <div class="relative w-full sm:max-w-sm md:max-w-md ">
             <Icon class="text-gray-400 absolute top-1/2 left-4 -translate-y-1/2" width="24" height="24" icon="mdi:magnify" />
-            <input v-model="countriesStore.searchTerm" class="bg-white rounded-md w-full p-4 pl-12 border border-slate-200 outline-blue-600 placeholder:font-normal" type="text" placeholder="Search for a country...">
-            <button v-if="countriesStore.searchTerm" @click="clearInput" class="absolute top-1/2 right-2 -translate-y-1/2 text-blue-600 p-2">
-                <Icon icon="carbon:close-filled" width="18" height="18"/>
+            <input v-model="countriesStore.searchTerm" class="bg-white rounded-md w-full p-4 pl-12 border border-slate-200 placeholder:font-normal dark:border-0 dark:bg-slate-950/50" type="text" placeholder="Search for a country...">
+            <button v-if="countriesStore.searchTerm" @click="clearInput" class="absolute top-1/2 right-2 -translate-y-1/2  p-2">
+                <Icon icon="ic:round-close" width="18" height="18"/>
             </button>
         </div>
         <div class="relative w-full  sm:w-44 z-10">
-            <button @click="toggleDropdown" class="p-4 bg-white rounded-md shadow-md shadow-slate-200 flex items-center justify-between space-x-4 w-full" ref="toggle">
+            <button @click="toggleDropdown" class="p-4 bg-white rounded-md shadow-md shadow-slate-200 flex items-center justify-between space-x-4 w-full dark:bg-slate-800 dark:shadow-none" ref="toggle">
                 <span>{{ countriesStore.filter }}</span>
                 <Icon icon="tabler:chevron-down" />
             </button>
-            <ul v-show="dropdownIsShown" class="absolute top-14 left-0 bg-white w-full rounded-md cursor-pointer overflow-hidden shadow-md shadow-slate-200" ref="dropdown-content">
-                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'All'">All</li>
-                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'Africa'">Africa</li>
-                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'Antarctica'">Antarctica</li>
-                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'Asia'">Asia</li>
-                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'Europe'">Europe</li>
-                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'North America'">North America</li>
-                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'South America'">South America</li>
-                <li class="py-3 px-4 hover:bg-blue-50" @click="countriesStore.filter = 'Oceania'">Oceania</li>
+            <ul v-show="dropdownIsShown" class="absolute top-14 left-0 bg-white w-full rounded-md cursor-pointer overflow-hidden border border-gray-100 dark:bg-slate-800 dark:border-slate-700" ref="dropdown-content">
+                <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'All'">All</li>
+                <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'Africa'">Africa</li>
+                <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'Antarctica'">Antarctica</li>
+                <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'Asia'">Asia</li>
+                <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'Europe'">Europe</li>
+                <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'North America'">North America</li>
+                <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'South America'">South America</li>
+                <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'Oceania'">Oceania</li>
             </ul>
         </div>
     </div>
