@@ -60,13 +60,16 @@ const isLoading = ref(false)
 const route = useRoute()
 
 const fetchCountryDetails = async () => {
-  const cca2 = route.params.cca2
+  const routeParam = route.params.cca2
   isLoading.value = true;
   try {
-    const response = await fetch(`https://restcountries.com/v3.1/alpha/${cca2}`)
+    const response = await fetch(`https://restcountries.com/v3.1/alpha/${routeParam}`)
     const data = await response.json()
     countryDetails.value = data[0]
     console.log(countryDetails.value)
+
+    // Store routeParam in local storage
+    localStorage.setItem('routeParams', routeParam);
   } catch (error) {
     console.error('Error fetching country details:', error)
   } finally {
@@ -80,6 +83,12 @@ const countryCode = computed(() => {
 
 
 onMounted(() => {
+  // Retrieve routeParam from local storage
+  const storedRouteParam = localStorage.getItem('routeParams');
+  if (storedRouteParam) {
+    // If routeParam is found in local storage, set it to the current route
+    route.params.cca2 = storedRouteParam;
+  }
   fetchCountryDetails()
 })
 
