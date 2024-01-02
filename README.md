@@ -8,9 +8,10 @@ A straightforward web application that allows users to search for information ab
 
 ## Features:
 
-- **Search Functionality**: Users can easily search for countries by entering the country name in the search bar.
-- **Country Details**: Display comprehensive information about the selected country, including its capital, population, area, and more.
-- **Responsive Design**: The app is designed to work seamlessly on various devices, ensuring a pleasant user experience.
+- **Search Functionality:** Users can easily search for countries by entering the country name in the search bar.
+- **Country Details:** Display comprehensive information about the selected country, including its capital, population, area, and more.
+- **Responsive Design:** The app is designed to work seamlessly on various devices, ensuring a pleasant user experience.
+- **Dark Mode:** Enjoy a visually comfortable experience with the option to switch to Dark Mode.
 
 ## Technologies Used:
 
