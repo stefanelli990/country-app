@@ -1,10 +1,10 @@
-# country-app
+# vue-nation
 
 ## Description:
 
 A straightforward web application that allows users to search for information about countries. The app provides details such as the country's name, capital, population, and more.
 
-**[Live Preview](https://harmonious-babka-904b55.netlify.app)**: Try the Country App live.
+**[Live Preview](https://harmonious-babka-904b55.netlify.app)**: Try the VueNation live.
 
 ## Features:
 
