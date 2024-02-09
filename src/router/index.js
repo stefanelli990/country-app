@@ -19,7 +19,16 @@ const router = createRouter({
       component: CountryDetailsView,
       props: true // Pass route params as props to the component
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    // If user is navigating back, return to the saved position
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      // Otherwise, scroll to top of the page
+      return { top: 0 }
+    }
+  }
 })
 
 export default router
