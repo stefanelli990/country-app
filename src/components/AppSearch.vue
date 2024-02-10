@@ -1,7 +1,7 @@
 <!-- AppSearch.vue -->
 
 <template>
-    <div class="flex flex-col space-y-4 justify-between items-center py-12 sm:flex-row sm:space-y-0">
+    <div class="flex flex-col space-y-4 justify-between items-center py-8 sticky top-0 z-10 duration-150 backdrop-blur-md bg-slate-50/80 dark:bg-slate-900/80 sm:flex-row sm:space-y-0">
         <div class="relative w-full sm:max-w-sm md:max-w-md ">
             <Icon class="text-gray-400 absolute top-1/2 left-4 -translate-y-1/2" width="24" height="24" icon="mdi:magnify" />
             <input v-model="countriesStore.searchTerm" class="bg-white rounded-md w-full p-4 pl-12 border border-slate-200 placeholder:font-normal dark:border-0 dark:bg-slate-950/50" type="text" placeholder="Search for a country...">
@@ -39,6 +39,7 @@ const countriesStore = useCountriesStore()
 const dropdownIsShown = ref(false)
 const dropdownContent = ref(null)
 const toggle = ref(null)
+const searchEl = ref(null)
 
 
 const toggleDropdown = () => {

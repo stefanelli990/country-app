@@ -3,8 +3,8 @@
 <template>
   <main class="max-w-3xl">
     <div class="flex justify-start my-12">
-      <router-link to="/" class="space-x-1 flex items-center text-lg">
-      <Icon icon="charm:chevron-left" />
+      <router-link to="/" class="space-x-1 flex items-center text-xl font-semibold">
+        <Icon icon="fluent:chevron-left-12-filled" width="24"/>
       <span>Back</span>
     </router-link>
     </div>

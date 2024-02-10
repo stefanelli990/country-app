@@ -1,3 +1,5 @@
+// main.js 
+
 import './style.css'
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 
