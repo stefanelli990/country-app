@@ -1,4 +1,4 @@
-<!-- HomeView.vue -->
+<!-- SearchCountriesView -->
 
 <template>
   <main>
