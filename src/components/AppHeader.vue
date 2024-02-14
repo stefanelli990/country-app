@@ -7,7 +7,7 @@
                 <RouterLink to="/" class="flex items-center space-x-2 dark:text-white">
                     <h1 class="text-2xl font-bold">VueNation</h1>
                 </RouterLink>
-                <ul class="flex space-x-4">
+                <ul class="hidden md:flex space-x-4">
                     <li>
                         <RouterLink to="/" active-class="active-link">
                             Search Countries
@@ -24,23 +24,24 @@
                         </RouterLink>
                     </li>
                 </ul>
-            </div>
-                <button @click="toggleDark()" class="flex items-center space-x-1 dark:text-white">
-                    <Icon v-if="!isDark" icon="material-symbols-light:dark-mode-rounded" width="24" height="24"/>
-                    <Icon v-else icon="fluent:weather-sunny-28-filled" width="24" height="24"/>
-                    <span>{{ !isDark ? 'Dark' : 'Light' }} Mode</span>
-                </button>
+            </div>   
+            <button @click="countriesStore.openMenu" class="md:hidden">
+                <Icon icon="charm:menu-hamburger" width="2rem" height="2rem" />
+            </button>
+            <div class="hidden md:block">
+                <ToggleBtn />  
+            </div>     
         </div>
     </header>
 </template>
 
 <script setup>
+
 import { RouterLink } from 'vue-router'
 import { Icon } from '@iconify/vue'
-import { useDark, useToggle } from '@vueuse/core'
+import { useCountriesStore } from '../stores/countriesStore'
+import ToggleBtn from './ToggleBtn.vue'
 
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
-
+const countriesStore = useCountriesStore()
 
 </script>

@@ -8,6 +8,7 @@ export const useCountriesStore = defineStore('countriesStore', {
       countriesData: [],
       filter: 'All',
       searchTerm: '',
+      menuIsVisible: false
     }
   },
   getters: {
@@ -22,6 +23,14 @@ export const useCountriesStore = defineStore('countriesStore', {
      },
      filterByContinent: (state) => (continent) => {
       return state.filterCountries.filter(country => country.continents[0] === continent);
+    }
+  },
+  actions: {
+    openMenu() {
+      this.menuIsVisible = true
+    },
+    closeMenu() {
+      this.menuIsVisible = false
     }
   }
 })
