@@ -29,7 +29,8 @@ const router = createRouter({
       path: '/:cca2',
       name: 'country-details',
       component: CountryDetailsView,
-      props: true 
+      props: true,
+      meta: { isCountryDetailsPage: true } 
     }
   ]
 })

@@ -9,7 +9,7 @@
                 </RouterLink>
                 <ul class="hidden md:flex space-x-4">
                     <li>
-                        <RouterLink to="/" active-class="active-link">
+                        <RouterLink to="/" active-class="active-link" :class="{'active-link': countriesStore.searchCountriesLink }">
                             Search Countries
                         </RouterLink>
                     </li>
@@ -36,7 +36,6 @@
 </template>
 
 <script setup>
-
 import { RouterLink } from 'vue-router'
 import { Icon } from '@iconify/vue'
 import { useCountriesStore } from '../stores/countriesStore'

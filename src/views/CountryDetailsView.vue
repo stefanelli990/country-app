@@ -50,10 +50,13 @@
 
 <script setup>
 
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute } from 'vue-router'
 import { Icon } from '@iconify/vue'
 import LoadingSpinner from '../components/LoadingSpinner.vue';
+import { useCountriesStore } from '../stores/countriesStore'
+
+const countriesStore = useCountriesStore()
 
 const countryDetails = ref(null)
 const isLoading = ref(false)
@@ -82,6 +85,17 @@ const countryCode = computed(() => {
 
 onMounted(() => {
   fetchCountryDetails()
+
+  if (route.meta.isCountryDetailsPage) {
+      console.log("You are on the country details page")
+      countriesStore.searchCountriesLink = true
+    } 
 })
+
+onBeforeUnmount(() => {
+  console.log("Leaving the country details page");
+  countriesStore.searchCountriesLink = false
+})
+
 
 </script>

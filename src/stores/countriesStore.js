@@ -8,7 +8,9 @@ export const useCountriesStore = defineStore('countriesStore', {
       countriesData: [],
       filter: 'All',
       searchTerm: '',
-      menuIsVisible: false
+      menuIsVisible: false,
+      showNavbar: true,
+      searchCountriesLink: false
     }
   },
   getters: {
