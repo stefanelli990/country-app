@@ -8,6 +8,10 @@ export const useCountriesStore = defineStore('countriesStore', {
       countriesData: [],
       filter: 'All',
       searchTerm: '',
+      searchFirstCountry: '',
+      searchFirstCountryDropdownIsVisible: false,
+      searchSecondCountry: '',
+      searchSecondCountryDropdownIsVisible: false,
       menuIsVisible: false,
       showNavbar: true,
       searchCountriesLink: false
@@ -16,11 +20,29 @@ export const useCountriesStore = defineStore('countriesStore', {
   getters: {
     filterCountries: (state) => {
       const search = state.searchTerm.toLowerCase().trim()
-  
+      
       if(search === '') {
         return state.countriesData
       } else {
         return state.countriesData.filter(country => country.name.common.toLowerCase().startsWith(search))
+      }
+     },
+     dropdownFilterCountriesOne: (state) => {
+      const searchFirstCountry = state.searchFirstCountry.toLowerCase().trim()
+      console.log(searchFirstCountry)
+      if(searchFirstCountry === '') {
+        return state.countriesData
+      } else {
+        return state.countriesData.filter(country => country.name.common.toLowerCase().startsWith(searchFirstCountry))
+      }
+     },
+     dropdownFilterCountriesTwo: (state) => {
+      const searchSecondCountry = state.searchSecondCountry.toLowerCase().trim()
+     
+      if(searchSecondCountry === '') {
+        return state.countriesData
+      } else {
+        return state.countriesData.filter(country => country.name.common.toLowerCase().startsWith(searchSecondCountry))
       }
      },
      filterByContinent: (state) => (continent) => {
@@ -33,6 +55,7 @@ export const useCountriesStore = defineStore('countriesStore', {
     },
     closeMenu() {
       this.menuIsVisible = false
-    }
+    },
+ 
   }
 })
