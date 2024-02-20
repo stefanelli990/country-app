@@ -14,7 +14,9 @@ export const useCountriesStore = defineStore('countriesStore', {
       searchSecondCountryDropdownIsVisible: false,
       menuIsVisible: false,
       showNavbar: true,
-      searchCountriesLink: false
+      searchCountriesLink: false,
+      firstSelectedFlag: null,
+      secondSelectedFlag: null
     }
   },
   getters: {
@@ -29,7 +31,7 @@ export const useCountriesStore = defineStore('countriesStore', {
      },
      dropdownFilterCountriesOne: (state) => {
       const searchFirstCountry = state.searchFirstCountry.toLowerCase().trim()
-      console.log(searchFirstCountry)
+      
       if(searchFirstCountry === '') {
         return state.countriesData
       } else {
@@ -47,6 +49,9 @@ export const useCountriesStore = defineStore('countriesStore', {
      },
      filterByContinent: (state) => (continent) => {
       return state.filterCountries.filter(country => country.continents[0] === continent);
+    },
+    getCountryFlag: (state) => (code) => {
+      return `fi fi-${code.toLowerCase()}`
     }
   },
   actions: {
@@ -56,6 +61,25 @@ export const useCountriesStore = defineStore('countriesStore', {
     closeMenu() {
       this.menuIsVisible = false
     },
- 
+    clearInput(search) {
+      
+      if(search === this.searchTerm && this.searchTerm.length > 0) {
+        console.log('its app searh')
+        this.searchTerm = ''
+      } else if(search === this.searchFirstCountry && this.searchFirstCountry.length > 0) {
+        console.log('its first seach dropdown')
+        this.searchFirstCountry = ''
+      } else if(search === this.searchSecondCountry && this.searchSecondCountry.length > 0) {
+        console.log('its second search dropdown')
+        this.searchSecondCountry = ''
+      } 
+    },
+    compareCountries() {
+      const countryOne = this.countriesData.filter(country => country.name.common === this.searchFirstCountry)
+      const countryTwo = this.countriesData.filter(country => country.name.common === this.searchSecondCountry)
+      console.log(countryOne[0].ccn3)
+      console.log(countryTwo[0].ccn3)
+
+    }
   }
 })

@@ -26,7 +26,7 @@
                 </ul>
             </div>   
             <button @click="countriesStore.openMenu" class="md:hidden">
-                <Icon icon="charm:menu-hamburger" width="2rem" height="2rem" />
+                <Icon icon="charm:menu-hamburger" width="2rem" height="2rem"/>
             </button>
             <div class="hidden md:block">
                 <ToggleBtn />  
