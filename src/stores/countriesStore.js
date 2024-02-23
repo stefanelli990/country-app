@@ -8,15 +8,17 @@ export const useCountriesStore = defineStore('countriesStore', {
       countriesData: [],
       filter: 'All',
       searchTerm: '',
-      searchFirstCountry: '',
-      searchFirstCountryDropdownIsVisible: false,
-      searchSecondCountry: '',
-      searchSecondCountryDropdownIsVisible: false,
+      firstSearchedCountry: '',
+      secondSearchedCountry: '',
+      firstSelectedDropdownIsShown: false,
+      secondSelectedDropdownIsShown: false,
+      firstSelectedCountry: '',
+      secondSelectedCountry: '',
       menuIsVisible: false,
       showNavbar: true,
       searchCountriesLink: false,
       firstSelectedFlag: null,
-      secondSelectedFlag: null
+      secondSelectedFlag: 'Serbia'
     }
   },
   getters: {
@@ -29,23 +31,16 @@ export const useCountriesStore = defineStore('countriesStore', {
         return state.countriesData.filter(country => country.name.common.toLowerCase().startsWith(search))
       }
      },
-     dropdownFilterCountriesOne: (state) => {
-      const searchFirstCountry = state.searchFirstCountry.toLowerCase().trim()
+     dropdownFilterCountriesSearch: (state) => (searched) => {
+      const firstSearchedCountry = state.firstSearchedCountry.toLowerCase().trim()
+      const secondSearchedCountry = state.secondSearchedCountry.toLowerCase().trim()
       
-      if(searchFirstCountry === '') {
+      if(searched === '') {
         return state.countriesData
       } else {
-        return state.countriesData.filter(country => country.name.common.toLowerCase().startsWith(searchFirstCountry))
+        return state.countriesData.filter(country => country.name.common.toLowerCase().startsWith(searched))
       }
-     },
-     dropdownFilterCountriesTwo: (state) => {
-      const searchSecondCountry = state.searchSecondCountry.toLowerCase().trim()
-     
-      if(searchSecondCountry === '') {
-        return state.countriesData
-      } else {
-        return state.countriesData.filter(country => country.name.common.toLowerCase().startsWith(searchSecondCountry))
-      }
+      
      },
      filterByContinent: (state) => (continent) => {
       return state.filterCountries.filter(country => country.continents[0] === continent);
@@ -66,16 +61,16 @@ export const useCountriesStore = defineStore('countriesStore', {
       if(search === this.searchTerm && this.searchTerm.length > 0) {
         console.log('its app searh')
         this.searchTerm = ''
-      } else if(search === this.searchFirstCountry && this.searchFirstCountry.length > 0) {
+      } else if(search === this.firstSearchedCountry && this.firstSearchedCountry.length > 0) {
         console.log('its first seach dropdown')
-        this.searchFirstCountry = ''
+        this.firstSearchedCountry = ''
       } else if(search === this.searchSecondCountry && this.searchSecondCountry.length > 0) {
         console.log('its second search dropdown')
         this.searchSecondCountry = ''
       } 
     },
     compareCountries() {
-      const countryOne = this.countriesData.filter(country => country.name.common === this.searchFirstCountry)
+      const countryOne = this.countriesData.filter(country => country.name.common === this.firstSearchedCountry)
       const countryTwo = this.countriesData.filter(country => country.name.common === this.searchSecondCountry)
       console.log(countryOne[0].ccn3)
       console.log(countryTwo[0].ccn3)
