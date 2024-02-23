@@ -3,7 +3,6 @@
     <div class="relative ">
       
         <button ref="toggle" @click="toggleSearchDropdown($event)" class="bg-white rounded-md shadow-md flex justify-between items-center w-full p-4 cursor-pointer dark:bg-slate-950/50"><span>{{ selectPlaceholder }}</span><Icon icon="ion:chevron-down" width="18" height="18" /></button>
-
         
         <ul ref="dropdownContent" v-if="dropdownIsShown" class="absolute top-14 left-0 bg-white w-full max-h-[228px] overflow-y-auto rounded-md border border-slate-200 cursor-pointer">
           <li class="relative">
@@ -66,6 +65,7 @@ const selectCountry = (e, dropdownType) => {
 onClickOutside([dropdownContent], (e) => {
   if (!e.target.closest(['button','input'])) {
     countriesStore.firstSelectedDropdownIsShown = false
+    countriesStore.secondSelectedDropdownIsShown = false
   }
 }, {
   ignore: [toggle],
