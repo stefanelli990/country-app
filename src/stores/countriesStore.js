@@ -12,13 +12,16 @@ export const useCountriesStore = defineStore('countriesStore', {
       secondSearchedCountry: '',
       firstSelectedDropdownIsShown: false,
       secondSelectedDropdownIsShown: false,
-      firstSelectedCountry: '',
-      secondSelectedCountry: '',
+      firstSelectedCountry: 'Serbia',
+      secondSelectedCountry: 'United States',
       menuIsVisible: false,
       showNavbar: true,
       searchCountriesLink: false,
-      firstSelectedFlag: null,
-      secondSelectedFlag: 'Serbia'
+      firstSelectedFlag: 'fi fi-rs',
+      secondSelectedFlag: 'fi fi-us',
+
+      countryOneDetails: {},
+      countryTwoDetails: {}
     }
   },
   getters: {
@@ -32,8 +35,6 @@ export const useCountriesStore = defineStore('countriesStore', {
       }
      },
      dropdownFilterCountriesSearch: (state) => (searched) => {
-      const firstSearchedCountry = state.firstSearchedCountry.toLowerCase().trim()
-      const secondSearchedCountry = state.secondSearchedCountry.toLowerCase().trim()
       
       if(searched === '') {
         return state.countriesData
@@ -64,16 +65,37 @@ export const useCountriesStore = defineStore('countriesStore', {
       } else if(search === this.firstSearchedCountry && this.firstSearchedCountry.length > 0) {
         console.log('its first seach dropdown')
         this.firstSearchedCountry = ''
-      } else if(search === this.searchSecondCountry && this.searchSecondCountry.length > 0) {
+      } else if(search === this.secondSearchedCountry && this.secondSearchedCountry.length > 0) {
         console.log('its second search dropdown')
-        this.searchSecondCountry = ''
+        this.secondSearchedCountry = ''
       } 
     },
     compareCountries() {
-      const countryOne = this.countriesData.filter(country => country.name.common === this.firstSearchedCountry)
-      const countryTwo = this.countriesData.filter(country => country.name.common === this.searchSecondCountry)
-      console.log(countryOne[0].ccn3)
-      console.log(countryTwo[0].ccn3)
+    
+      const countryOne = this.countriesData.find(country => country.name.common === this.firstSelectedCountry)
+      const countryTwo = this.countriesData.find(country => country.name.common === this.secondSelectedCountry)
+      
+      console.log(countryOne)
+
+        this.countryOneDetails = {
+          name: countryOne.name.common,
+          continent: countryOne.continents[0], 
+          area: countryOne.area.toLocaleString(),
+          population: countryOne.population.toLocaleString(),
+          capital: countryOne.capital ? Object.values(countryOne.capital).join(', ') : 'N/A'
+          // Add more properties as needed
+        }
+  
+        this.countryTwoDetails = {
+          name: countryTwo.name.common,
+          continent: countryTwo.continents[0], 
+          area: countryTwo.area.toLocaleString(),
+          population: countryTwo.population.toLocaleString(),
+          capital: countryTwo.capital ? Object.values(countryTwo.capital).join(', ') : 'N/A'
+          // Add more properties as needed
+        }
+    
+      
 
     }
   }

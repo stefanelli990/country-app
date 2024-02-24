@@ -11,9 +11,10 @@
     <LoadingSpinner v-if="isLoading"/>
     <div v-else-if="countryDetails" class="flex flex-col space-y-8 md:items-center md:space-x-12 md:flex-row md:space-y-0">
         <div class="flex justify-center">
-          <span :class="countriesStore.getCountryFlag(countryDetails.cca2)" class="text-[50vw] sm:text-[250px] rounded-lg border border-gray-200 dark:border-0"></span>
+          <span :class="countriesStore.getCountryFlag(countryDetails.cca2)" class="text-[50vw] sm:text-[280px] rounded-lg border border-gray-200 dark:border-0"></span>
         </div>
         <div class="flex flex-col space-y-2">
+          <h1 class="text-xl font-bold mb-2">{{  countryDetails.name.common }}</h1>
           <div>
             <span class="text-gray-500">Official Name: </span>
             <span class="font-semibold">{{ countryDetails.name.official }}</span>
