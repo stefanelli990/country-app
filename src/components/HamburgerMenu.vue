@@ -1,5 +1,5 @@
 <template>
-    <div :class="{ 'translate-x-0': countriesStore.menuIsVisible}" class="bg-white flex justify-between flex-col p-8 h-full w-64 fixed top-0 right-0 z-30 translate-x-full duration-200 md:hidden dark:bg-slate-800">
+    <div :class="countriesStore.menuIsVisible ? '-translate-x-0' : 'translate-x-full'" class="bg-white flex justify-between flex-col p-8 h-full w-64 fixed top-0 right-0 z-30 duration-200 md:hidden dark:bg-slate-800">
         <div class="space-y-4 text-end">
             <button @click="countriesStore.closeMenu">
                 <Icon icon="mingcute:close-line" width="2rem" height="2rem" />
