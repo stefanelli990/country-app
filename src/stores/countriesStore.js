@@ -19,9 +19,22 @@ export const useCountriesStore = defineStore('countriesStore', {
       searchCountriesLink: false,
       firstSelectedFlag: 'fi fi-rs',
       secondSelectedFlag: 'fi fi-us',
+      isLoading: false,
 
-      countryOneDetails: {},
-      countryTwoDetails: {}
+      countryOneDetails: {
+        name: 'Serbia',
+        continent: 'Europe',
+        area: '88,361',
+        population: '6,908,224',
+        capital: 'Belgrade'
+      },
+      countryTwoDetails: {
+        name: 'United States',
+        continent: 'North America',
+        area: '9,372,610',
+        population: '329,484,123',
+        capital: 'Washington, D.C.'
+      }
     }
   },
   getters: {
@@ -71,11 +84,12 @@ export const useCountriesStore = defineStore('countriesStore', {
       } 
     },
     compareCountries() {
-    
-      const countryOne = this.countriesData.find(country => country.name.common === this.firstSelectedCountry)
-      const countryTwo = this.countriesData.find(country => country.name.common === this.secondSelectedCountry)
+      this.isLoading = true
+      setTimeout(() => {
+        const countryOne = this.countriesData.find(country => country.name.common === this.firstSelectedCountry)
+        const countryTwo = this.countriesData.find(country => country.name.common === this.secondSelectedCountry)
       
-      console.log(countryOne)
+        console.log(countryOne)
 
         this.countryOneDetails = {
           name: countryOne.name.common,
@@ -85,7 +99,6 @@ export const useCountriesStore = defineStore('countriesStore', {
           capital: countryOne.capital ? Object.values(countryOne.capital).join(', ') : 'N/A'
           // Add more properties as needed
         }
-  
         this.countryTwoDetails = {
           name: countryTwo.name.common,
           continent: countryTwo.continents[0], 
@@ -94,7 +107,10 @@ export const useCountriesStore = defineStore('countriesStore', {
           capital: countryTwo.capital ? Object.values(countryTwo.capital).join(', ') : 'N/A'
           // Add more properties as needed
         }
-    
+        this.isLoading = false
+      }, 500);
+      
+      
       
 
     }

@@ -1,7 +1,7 @@
 <!-- CountryList.vue -->
 
 <template>
-    <LoadingSpinner v-if="isLoading"/>
+    <LoadingSpinner v-if="countriesStore.isLoading"/>
     <ul v-else-if="getFilteredCountries.length > 0" class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <CountryItem v-for="(country, index) in getFilteredCountries" :key="country.id || index" :name="country.name.common" :flag="country.flags.svg" :coat-of-arms="country.coatOfArms.svg" :population="country.population" :capital="country.capital && country.capital.length > 0 ? country.capital[0] : 'N/A'" :area="country.area" :code="country.cca2" @click="goToCountryDetails(country.cca2)"/>
     </ul>
@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCountriesStore } from '../stores/countriesStore'
 import CountryItem from './CountryItem.vue'
@@ -23,9 +23,7 @@ const router = useRouter();
 const goToCountryDetails = (cca2) => {
   router.push(`/${cca2}`);
 
-};
-
-const isLoading = ref(true)
+}
 
 const getFilteredCountries = computed(() => {
   if (countriesStore.filter === 'All') {
@@ -36,7 +34,7 @@ const getFilteredCountries = computed(() => {
 })
 
 const fetchData = async () => {
-  isLoading.value = true;
+  countriesStore.isLoading = true;
   try {
     const response = await fetch('https://restcountries.com/v3.1/all')
     const data = await response.json()
@@ -44,7 +42,7 @@ const fetchData = async () => {
   } catch (error) {
     console.error('Error fetching data:', error)
   } finally {
-    isLoading.value = false
+    countriesStore.isLoading = false
   }
 }
 

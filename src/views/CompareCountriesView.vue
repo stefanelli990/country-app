@@ -16,8 +16,9 @@
             <button @click="countriesStore.compareCountries" class="py-4 px-8 bg-white text-darkColor rounded-md shadow-lg w-full sm:w-auto">Compare</button>
         </div>
 
-        <table class="table-fixed w-full text-left mb-4">
-  <thead class="border-b border-b-slate-500">
+      <div class="overflow-auto">
+        <table class="table-auto w-full text-left mb-4 bg-white  rounded-md overflow-hidden whitespace-nowrap">
+  <thead class="border-b border-b-slate-300 bg-slate-200">
     <tr>
       <th class="p-4">General information</th>
       <th class="p-4">Serbia</th>
@@ -40,20 +41,23 @@
       <td class="p-4">{{ countriesStore.countryOneDetails.population }}</td>
       <td class="p-4">{{ countriesStore.countryTwoDetails.population }}</td>
     </tr>
-    <tr class="border-b border-b-slate-300">
+    <tr class="">
       <td class="p-4">Capital:</td>
       <td class="p-4">{{ countriesStore.countryOneDetails.capital }}</td>
       <td class="p-4">{{ countriesStore.countryTwoDetails.capital }}</td>
     </tr>
   </tbody>
 </table>
+      </div>
     </main>
+    <LoadingSpinner v-if="countriesStore.isLoading"/>
 </template>
 
 <script setup>
 
 import AppSearchDropdown from '../components/AppSearchDropdown.vue';
 import { useCountriesStore } from '../stores/countriesStore'
+import LoadingSpinner from '../components/LoadingSpinner.vue';
 
 const countriesStore = useCountriesStore()
 

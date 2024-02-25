@@ -3,7 +3,7 @@
     <div class="relative ">
         <button ref="toggle" @click="toggleSearchDropdown($event)" class="bg-white rounded-md shadow-md flex justify-between items-center w-full p-4 cursor-pointer dark:bg-slate-950/50"><span>{{ selectPlaceholder }}</span><Icon icon="ion:chevron-down" width="18" height="18" /></button>
         <ul ref="dropdownContent" v-if="dropdownIsShown" class="absolute top-14 left-0 bg-white w-full max-h-[228px] overflow-y-auto rounded-md border border-slate-200 cursor-pointer z-10">
-          <li class="sticky top-0 z-10">
+          <li class="sticky top-0 z-10 border-b border-b-slate-200">
             <input :value="modelValue" @input="emit('update:modelValue', $event.target.value)" class="bg-slate-50 w-full outline-none p-4 cursor-pointer placeholder:font-medium placeholder:text-darkColor dark:bg-slate-950/50" type="text" placeholder="Type to search">
         <button v-if="modelValue" @click="countriesStore.clearInput(modelValue)" class="absolute top-1/2 right-2 -translate-y-1/2  p-2">
             <Icon icon="ic:round-close" width="18" height="18"/>
@@ -37,8 +37,10 @@ const toggleSearchDropdown = (e) => {
   console.log(checkSelectBtn)
     if(checkSelectBtn === 'Select first country') {
       countriesStore.firstSelectedDropdownIsShown = !countriesStore.firstSelectedDropdownIsShown
+      countriesStore.secondSelectedDropdownIsShown = false
     } else if(checkSelectBtn === 'Select second country') {
       countriesStore.secondSelectedDropdownIsShown = !countriesStore.secondSelectedDropdownIsShown
+      countriesStore.firstSelectedDropdownIsShown = false
     }
 }
 

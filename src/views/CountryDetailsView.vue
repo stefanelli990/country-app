@@ -8,13 +8,13 @@
       <span>Back</span>
     </router-link>
     </div>
-    <LoadingSpinner v-if="isLoading"/>
+    <LoadingSpinner v-if="countriesStore.isLoading"/>
     <div v-else-if="countryDetails" class="flex flex-col space-y-8 md:items-center md:space-x-12 md:flex-row md:space-y-0">
         <div class="flex justify-center">
           <span :class="countriesStore.getCountryFlag(countryDetails.cca2)" class="text-[50vw] sm:text-[280px] rounded-lg border border-gray-200 dark:border-0"></span>
         </div>
         <div class="flex flex-col space-y-2">
-          <h1 class="text-xl font-bold mb-2">{{  countryDetails.name.common }}</h1>
+          <h1 class="text-xl text-center font-bold mb-2 md:text-left">{{  countryDetails.name.common }}</h1>
           <div>
             <span class="text-gray-500">Official Name: </span>
             <span class="font-semibold">{{ countryDetails.name.official }}</span>
@@ -51,7 +51,7 @@
 
 <script setup>
 
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute } from 'vue-router'
 import { Icon } from '@iconify/vue'
 import LoadingSpinner from '../components/LoadingSpinner.vue'
@@ -60,12 +60,11 @@ import { useCountriesStore } from '../stores/countriesStore'
 const countriesStore = useCountriesStore()
 
 const countryDetails = ref(null)
-const isLoading = ref(false)
 const route = useRoute()
 
 const fetchCountryDetails = async () => {
   const routeParam = route.params.cca2
-  isLoading.value = true
+  countriesStore.isLoading = true
   
   try {
     const response = await fetch(`https://restcountries.com/v3.1/alpha/${routeParam}`)
@@ -75,7 +74,7 @@ const fetchCountryDetails = async () => {
   } catch (error) {
     console.error('Error fetching country details:', error)
   } finally {
-    isLoading.value = false
+    countriesStore.isLoading = false
   }
 };
 
