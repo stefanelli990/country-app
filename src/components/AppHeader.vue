@@ -1,13 +1,13 @@
 <!-- AppHeaer.vue -->
 
 <template>
-    <header class="bg-white shadow-sm dark:bg-slate-800/40">
+    <header class="bg-white dark:bg-slate-800">
         <div class="max-w-6xl mx-auto px-4 py-6 flex justify-between items-center">
             <div class="flex items-center space-x-12">
                 <RouterLink to="/" class="flex items-center space-x-2 dark:text-white">
-                    <h1 class="text-2xl font-bold">VueNation</h1>
+                    <h1 class="text-2xl font-extrabold">VueNation</h1>
                 </RouterLink>
-                <ul class="hidden md:flex space-x-4">
+                <ul class="hidden md:flex space-x-4 font-semibold">
                     <li>
                         <RouterLink to="/" active-class="active-link" :class="{'active-link': countriesStore.searchCountriesLink }">
                             Search Countries

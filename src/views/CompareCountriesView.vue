@@ -18,36 +18,36 @@
 
       <div class="overflow-auto">
         <table class="table-auto w-full text-left mb-4 bg-white  rounded-md overflow-hidden whitespace-nowrap">
-  <thead class="border-b border-b-slate-300 bg-slate-200">
-    <tr>
-      <th class="p-4">General information</th>
-      <th class="p-4">Serbia</th>
-      <th class="p-4">United States</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="border-b border-b-slate-300">
-      <td class="p-4">Continent:</td>
-      <td class="p-4">{{ countriesStore.countryOneDetails.continent }}</td>
-      <td class="p-4">{{ countriesStore.countryTwoDetails.continent }}</td>
-    </tr>
-    <tr class="border-b border-b-slate-300">
-      <td class="p-4">Area:</td>
-      <td class="p-4">{{ countriesStore.countryOneDetails.area }} km<sup>2</sup></td>
-      <td class="p-4">{{ countriesStore.countryTwoDetails.area }} km<sup>2</sup></td>
-    </tr>
-    <tr class="border-b border-b-slate-300">
-      <td class="p-4">Population:</td>
-      <td class="p-4">{{ countriesStore.countryOneDetails.population }}</td>
-      <td class="p-4">{{ countriesStore.countryTwoDetails.population }}</td>
-    </tr>
-    <tr class="">
-      <td class="p-4">Capital:</td>
-      <td class="p-4">{{ countriesStore.countryOneDetails.capital }}</td>
-      <td class="p-4">{{ countriesStore.countryTwoDetails.capital }}</td>
-    </tr>
-  </tbody>
-</table>
+          <thead class="border-b border-b-slate-300 bg-slate-200">
+            <tr>
+              <th class="p-4">General information</th>
+              <th class="p-4">Serbia</th>
+              <th class="p-4">United States</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-b-slate-300">
+              <td class="p-4">Continent:</td>
+              <td class="p-4">{{ countriesStore.countryOneDetails.continent }}</td>
+              <td class="p-4">{{ countriesStore.countryTwoDetails.continent }}</td>
+            </tr>
+            <tr class="border-b border-b-slate-300">
+              <td class="p-4">Area:</td>
+              <td class="p-4">{{ countriesStore.countryOneDetails.area }} km<sup>2</sup></td>
+              <td class="p-4">{{ countriesStore.countryTwoDetails.area }} km<sup>2</sup></td>
+            </tr>
+            <tr class="border-b border-b-slate-300">
+              <td class="p-4">Population:</td>
+              <td class="p-4">{{ countriesStore.countryOneDetails.population }}</td>
+              <td class="p-4">{{ countriesStore.countryTwoDetails.population }}</td>
+            </tr>
+            <tr class="">
+              <td class="p-4">Capital:</td>
+              <td class="p-4">{{ countriesStore.countryOneDetails.capital }}</td>
+              <td class="p-4">{{ countriesStore.countryTwoDetails.capital }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </main>
     <LoadingSpinner v-if="countriesStore.isLoading"/>

@@ -52,7 +52,7 @@ export const useCountriesStore = defineStore('countriesStore', {
       if(searched === '') {
         return state.countriesData
       } else {
-        return state.countriesData.filter(country => country.name.common.toLowerCase().startsWith(searched))
+        return state.countriesData.filter(country => country.name.common.toLowerCase().startsWith(searched.toLowerCase().trim()))
       }
       
      },
