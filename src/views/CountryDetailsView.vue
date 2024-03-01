@@ -1,7 +1,7 @@
 <!-- CountryDetailsView.vue -->
 
 <template>
-  <main class="max-w-4xl">
+  <main class="max-w-5xl">
     <div class="flex justify-start my-8">
       <router-link to="/" class="btn">
         <Icon icon="fluent:arrow-left-16-filled" width="1rem" height="1rem" />
@@ -9,45 +9,47 @@
       </router-link>
     </div>
     <LoadingSpinner v-if="countriesStore.isLoading"/>
-    <div v-else-if="countryDetails" class="flex flex-col space-y-8 mb-4 md:space-x-12 md:flex-row md:space-y-0">
+    <div v-else-if="countryDetails" class="flex flex-col space-y-8 mb-4 md:space-x-4 lg:space-x-12 lg:flex-row lg:space-y-0">
         <div class="flex justify-center items-start">
           <span :class="countriesStore.getCountryFlag(countryDetails.cca2)" class="text-[50vw] sm:text-[250px] rounded-lg border border-gray-200 dark:border-0"></span>
         </div>
-        <div class="flex flex-col bg-white flex-1 rounded-lg">
-          <h1 class="p-4 border-b border-b-slate-100 text-2xl text-center font-extrabold md:text-left">{{ countryDetails.name.common }}</h1>
+        <div class="flex flex-col bg-white flex-1 rounded-lg dark:bg-slate-800">
+          <h1 class="p-4 border-b border-b-slate-100 text-2xl text-center font-extrabold md:text-left dark:border-b-slate-700">{{ countryDetails.name.common }}</h1>
           <div>
-            <div class="flex flex-col p-4 border-b border-b-slate-100 sm:flex-row">
-            <span class="opacity-50 flex-1">Official Name</span>
-            <span class="font-semibold flex-1">{{ countryDetails.name.official }}</span>
+            <div class="flex flex-col p-4 border-b border-b-slate-100 sm:flex-row dark:border-b-slate-700">
+            <span class="opacity-50 sm:w-4/12">Official Name</span>
+            <span class="font-semibold sm:w-2/3">{{ countryDetails.name.official }}</span>
           </div>
-          <div class="flex flex-col p-4 border-b border-b-slate-100 sm:flex-row">
-            <span class="opacity-50 flex-1">Continent</span>
-            <span class="font-semibold flex-1">{{ countryDetails.continents[0] }}</span>
+          <div class="flex flex-col p-4 border-b border-b-slate-100 sm:flex-row dark:border-b-slate-700">
+            <span class="opacity-50 sm:w-4/12">Region</span>
+            <span class="font-semibold sm:w-2/3">{{ countryDetails.region }}</span>
           </div>
-          <div class="flex flex-col p-4 border-b border-b-slate-100 sm:flex-row">
-            <span class="opacity-50 flex-1">Languages</span>
-            <span class="font-semibold flex-1">{{ countryDetails.languages ? Object.values(countryDetails.languages).join(', ') : 'N/A' }}</span>
+          <div class="flex flex-col p-4 border-b border-b-slate-100 sm:flex-row dark:border-b-slate-700">
+            <span class="opacity-50 sm:w-4/12">Languages</span>
+            <span class="font-semibold sm:w-2/3">{{ countryDetails.languages ? Object.values(countryDetails.languages).join(', ') : 'N/A' }}</span>
           </div>
-          <div class="flex flex-col p-4 border-b border-b-slate-100 sm:flex-row">
-            <span class="opacity-50 flex-1">Area</span>
-            <span class="font-semibold flex-1">{{ countryDetails.area.toLocaleString() }} km<sup>2</sup></span>
+          <div class="flex flex-col p-4 border-b border-b-slate-100 sm:flex-row dark:border-b-slate-700">
+            <span class="opacity-50 sm:w-4/12">Area</span>
+            <span class="font-semibold sm:w-2/3">{{ countryDetails.area.toLocaleString() }} km<sup>2</sup></span>
           </div>
-          <div class="flex flex-col p-4 border-b border-b-slate-100 sm:flex-row">
-            <span class="opacity-50 flex-1">Population</span>
-            <span class="font-semibold flex-1">{{ countryDetails.population.toLocaleString() }}</span>
+          <div class="flex flex-col p-4 border-b border-b-slate-100 sm:flex-row dark:border-b-slate-700">
+            <span class="opacity-50 sm:w-4/12">Population</span>
+            <span class="font-semibold sm:w-2/3">{{ countryDetails.population.toLocaleString() }}</span>
           </div>
-          <div class="flex flex-col p-4 border-b border-b-slate-100 sm:flex-row">
-            <span class="opacity-50 flex-1">Capital</span>
-            <span class="font-semibold flex-1">{{ countryDetails.capital ? Object.values(countryDetails.capital).join(', ') : 'N/A' }}</span>
+          <div class="flex flex-col p-4 border-b border-b-slate-100 sm:flex-row dark:border-b-slate-700">
+            <span class="opacity-50 sm:w-4/12">Capital</span>
+            <span class="font-semibold sm:w-2/3">{{ countryDetails.capital ? Object.values(countryDetails.capital).join(', ') : 'N/A' }}</span>
           </div>
-          <div class="flex flex-col p-4 border-b border-b-slate-100 sm:flex-row">
-            <span class="opacity-50 flex-1">Currency</span>
-            <span class="font-semibold flex-1">{{ countryDetails.currencies ? Object.values(countryDetails.currencies)[0].name : 'N/A' }}</span>
+          <div class="flex flex-col p-4 border-b border-b-slate-100 sm:flex-row dark:border-b-slate-700">
+            <span class="opacity-50 sm:w-4/12">Currency</span>
+            <span class="font-semibold sm:w-2/3">{{ countryDetails.currencies ? Object.values(countryDetails.currencies)[0].name : 'N/A' }}</span>
           </div>
-          <div class="flex flex-col p-4 border-b border-b-slate-100 sm:flex-row">
-            <span class="opacity-50 flex-1">Border Countries</span>
-            <!-- <span class="font-semibold flex-1">{{ countryDetails.borders ? Object.values(countryDetails.borders).join(', ') : 'N/A' }}</span> -->
-            <span class="font-semibold flex-1"><button v-for="borderCountry in countryDetails.borders" :key="borderCountry.id" @click="goToCountryDetails(borderCountry)" class="p-1 bg-slate-400 mr-2 mb-2">{{ getCountryNames(borderCountry) }}</button></span>
+          <div class="flex flex-col p-4 sm:flex-row">
+            <span class="opacity-50 sm:w-4/12 mb-1">Border Countries</span>
+            <span class="font-semibold sm:w-2/3 flex flex-wrap gap-2">
+              <button v-for="borderCountry in countryDetails.borders" :key="borderCountry.id" @click="goToCountryDetails(borderCountry)" class="btn btn-small bg-slate-50">{{ getCountryNames(borderCountry) }}</button>
+              <span v-if="!countryDetails.borders">N/A</span>
+            </span>
           </div>
           </div>
         </div>
@@ -64,6 +66,8 @@ import { Icon } from '@iconify/vue'
 import LoadingSpinner from '../components/LoadingSpinner.vue'
 import { useCountriesStore } from '../stores/countriesStore'
 
+// json file with countries informations
+import borderCountries from '../data/countryNamesCodes.json'
 
 const countriesStore = useCountriesStore()
 
@@ -71,7 +75,11 @@ const countryDetails = ref(null)
 const route = useRoute()
 const router = useRouter()
 
+const getCountryNames = (code) => {
+  const country = borderCountries.find(country => country.cca3 === code)
 
+  return country ? country.Name : "N/A"
+}
 
 const goToCountryDetails = (cca2) => {
   router.push(`/${cca2}`)
@@ -93,14 +101,11 @@ const fetchCountryDetails = async () => {
   }
 }
 
-
-
 watch(() => route.params.cca2, (newValue, oldValue) => {
   fetchCountryDetails(newValue)
 })
 
 onMounted(() => {
-
   fetchCountryDetails()
 
   if (route.meta.isCountryDetailsPage) {
@@ -113,18 +118,5 @@ onBeforeUnmount(() => {
   console.log("Leaving the country details page");
   countriesStore.searchCountriesLink = false
 })
-
-
-const getCountryNames = (code) => {
-  
-  const countryNames = {
-    // Example mapping of CCA3 to country names
-    "USA": "United States",
-    "GBR": "United Kingdom",
-    // Add more mappings as needed
-  };
-
-  return countryNames[code] || "N/A";
-}
 
 </script>

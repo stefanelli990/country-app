@@ -7,7 +7,7 @@
         @apply font-family;
       }
     body {
-        @apply bg-slate-50 text-darkColor dark:bg-slate-900 dark:text-white;
+        @apply bg-slate-50 text-sm text-darkColor dark:bg-slate-900 dark:text-white;
     }
     main {
         @apply max-w-6xl mx-auto px-4;
@@ -16,7 +16,10 @@
 
 @layer components {
     .btn {
-        @apply bg-white py-3 px-5 flex items-center rounded-md space-x-1 font-semibold shadow-md shadow-slate-200 dark:bg-slate-800 dark:shadow-slate-900;
+        @apply bg-white py-3 px-5 flex items-center rounded-md space-x-1 font-semibold shadow-md hover:bg-blue-50 shadow-slate-200 dark:bg-slate-800 dark:shadow-slate-900 dark:hover:bg-slate-700;
+    }
+    .btn-small {
+        @apply p-2 text-sm;
     }
 }
 
