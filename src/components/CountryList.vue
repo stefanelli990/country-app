@@ -26,10 +26,10 @@ const goToCountryDetails = (cca2) => {
 }
 
 const getFilteredCountries = computed(() => {
-  if (countriesStore.filter === 'All') {
+  if (countriesStore.filter === 'All Regions') {
     return countriesStore.filterCountries
   } else {
-    return countriesStore.filterByContinent(countriesStore.filter)
+    return countriesStore.filterByRegion(countriesStore.filter)
   }
 })
 

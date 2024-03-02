@@ -3,7 +3,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import SearchCountriesView from '../views/SearchCountriesView.vue'
 import CompareCountriesView from '../views/CompareCountriesView.vue'
-import AboutView from '../views/AboutView.vue'
 import CountryDetailsView from '../views/CountryDetailsView.vue'
 
 const router = createRouter({
@@ -18,11 +17,6 @@ const router = createRouter({
       path: '/compare-countries',
       name: 'compare-countries',
       component: CompareCountriesView,
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: AboutView,
     },
     // Add a dynamic route for country details
     {

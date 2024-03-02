@@ -8,7 +8,7 @@ export const useCountriesStore = defineStore('countriesStore', {
   state: () => {
     return { 
       countriesData: [],
-      filter: 'All',
+      filter: 'All Regions',
       searchTerm: '',
       firstSearchedCountry: '',
       secondSearchedCountry: '',
@@ -72,8 +72,8 @@ export const useCountriesStore = defineStore('countriesStore', {
       }
       
      },
-     filterByContinent: (state) => (continent) => {
-      return state.filterCountries.filter(country => country.continents[0] === continent);
+     filterByRegion: (state) => (region) => {
+      return state.filterCountries.filter(country => country.region === region);
     },
     getCountryFlag: (state) => (code) => {
       return `fi fi-${code.toLowerCase()}`

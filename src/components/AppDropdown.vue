@@ -5,13 +5,11 @@
             <Icon icon="tabler:chevron-down" width="1.25rem"/>
         </button>
         <ul v-show="dropdownIsShown" class="absolute top-14 left-0 bg-white shadow-md w-full rounded-md cursor-pointer overflow-hidden dark:bg-slate-800" ref="dropdown-content">
-            <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'All'">All</li>
+            <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'All Regions'">All Regions</li>
             <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'Africa'">Africa</li>
-            <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'Antarctica'">Antarctica</li>
+            <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'Americas'">Americas</li>
             <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'Asia'">Asia</li>
             <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'Europe'">Europe</li>
-            <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'North America'">North America</li>
-            <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'South America'">South America</li>
             <li class="py-3 px-4 hover:bg-blue-50 dark:hover:bg-slate-700" @click="countriesStore.filter = 'Oceania'">Oceania</li>
         </ul>
     </div>

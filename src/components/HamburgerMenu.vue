@@ -5,7 +5,7 @@
                 <Icon icon="mingcute:close-line" width="1.5rem" height="1.5rem" />
             </button>
             <nav>
-                <ul class="mt-8 flex flex-col space-y-4">
+                <ul class="mt-8 flex flex-col space-y-4 text-lg font-semibold">
                     <li>
                         <RouterLink to="/" active-class="active-link" @click="countriesStore.closeMenu">
                             Search Countries
@@ -14,11 +14,6 @@
                     <li>
                         <RouterLink to="/compare-countries" active-class="active-link" @click="countriesStore.closeMenu">
                             Compare Countries
-                        </RouterLink>
-                    </li>
-                    <li>
-                        <RouterLink to="/about" active-class="active-link" @click="countriesStore.closeMenu">
-                            About App
                         </RouterLink>
                     </li>
                 </ul>
