@@ -1,15 +1,14 @@
-# vue-nation
+# Frontend Mentor Challenge: Country App
 
-## Description:
+This project is a solution to the [Country App challenge](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca) from Frontend Mentor. The goal of this challenge is to build a country information app that consumes a REST Countries API and allows users to search for countries, view details about them, and toggle between light and dark color themes.
 
-A straightforward web application that allows users to search for information about countries. The app provides details such as the country's name, capital, population, and more.
-
-**[Live Preview](https://harmonious-babka-904b55.netlify.app)**: Try the VueNation live.
+You can view a live demo of the project **[here](https://harmonious-babka-904b55.netlify.app)**.
 
 ## Features:
 
 - **Search Functionality:** Users can easily search for countries by entering the country name in the search bar.
 - **Country Details:** Display comprehensive information about the selected country, including its capital, population, area, and more.
+- **Country Comparison:** Compare countries side by side, allowing users to see informations about selected countries.
 - **Responsive Design:** The app is designed to work seamlessly on various devices, ensuring a pleasant user experience.
 - **Dark Mode:** Enjoy a visually comfortable experience with the option to switch to Dark Mode.
 
