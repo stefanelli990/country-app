@@ -26,7 +26,7 @@
         </div>
         <ToggleBtn/>
     </div>
-    <div @click="countriesStore.closeMenu" class="absolute top-0 left-0 h-full w-full bg-darkColor/30 z-20 duration-200 md:hidden" :class="countriesStore.menuIsVisible ? 'visible opacity-100' : 'invisible opacity-0'"></div>
+    <div @click="countriesStore.closeMenu" class="fixed top-0 left-0 h-full w-full bg-darkColor/30 z-20 duration-200 md:hidden" :class="countriesStore.menuIsVisible ? 'visible opacity-100' : 'invisible opacity-0'"></div>
 </template>
 
 <script setup>
