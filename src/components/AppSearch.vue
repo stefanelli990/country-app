@@ -12,13 +12,13 @@
 
 <script setup>
 
+import { onBeforeRouteLeave } from 'vue-router';
 import { useCountriesStore } from '../stores/countriesStore'
 import { Icon } from '@iconify/vue'
 
 const countriesStore = useCountriesStore()
 
-// const clearInput = () => {
-//     countriesStore.searchTerm = ''
-// }
-
+onBeforeRouteLeave(() => {
+    countriesStore.searchTerm = ''
+})
 </script>

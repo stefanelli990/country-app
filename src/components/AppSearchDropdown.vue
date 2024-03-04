@@ -2,9 +2,9 @@
   
     <div class="relative ">
         <button ref="toggle" @click="toggleSearchDropdown($event)" class="bg-white rounded-md shadow-md shadow-slate-200 flex justify-between items-center w-full p-4 cursor-pointer font-semibold dark:bg-slate-800 dark:shadow-slate-900"><span>{{ selectPlaceholder }}</span><Icon icon="ion:chevron-down" width="18" height="18" /></button>
-        <ul ref="dropdownContent" v-if="dropdownIsShown" class="absolute top-14 left-0 bg-white w-full max-h-[270px] border shadow-md overflow-y-auto rounded-md cursor-pointer z-10 dark:bg-slate-800 dark:border-slate-800">
+        <ul ref="dropdownContent" v-if="dropdownIsShown" class="absolute top-14 left-0 bg-white w-full max-h-[294px] border shadow-md overflow-y-auto rounded-md cursor-pointer z-10 dark:bg-slate-800 dark:border-slate-800">
           <li class="sticky top-0 z-10 border-b border-b-slate-200 dark:border-b-slate-800">
-            <input :value="modelValue" @input="emit('update:modelValue', $event.target.value)" class="bg-slate-50 w-full outline-none p-4 cursor-pointer placeholder:font-medium placeholder:text-darkColor dark:bg-slate-900 dark:placeholder-white" type="text" placeholder="Type to search">
+            <input ref="searchInput" :value="modelValue" @input="emit('update:modelValue', $event.target.value)" class="bg-slate-50 w-full outline-none p-4 cursor-pointer placeholder:font-medium placeholder:text-darkColor dark:bg-slate-900 dark:placeholder-white" type="text" placeholder="Type to search">
         <button v-if="modelValue" @click="countriesStore.clearInput(modelValue)" class="absolute top-1/2 right-2 -translate-y-1/2  p-2">
             <Icon icon="ic:round-close" width="18" height="18"/>
         </button>
@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 import { useCountriesStore } from '../stores/countriesStore'
 import { Icon } from '@iconify/vue'
 import { onMounted } from 'vue'
@@ -31,10 +31,12 @@ const emit = defineEmits(['update:modelValue'])
 
 const dropdownContent = ref(null)
 const toggle = ref(null)
+const searchInput = ref(null)
 
 const toggleSearchDropdown = (e) => {
   const checkSelectBtn = e.target.closest('button').children[0].textContent
   console.log(checkSelectBtn)
+  
     if(checkSelectBtn === 'Select first country') {
       countriesStore.firstSelectedDropdownIsShown = !countriesStore.firstSelectedDropdownIsShown
       countriesStore.secondSelectedDropdownIsShown = false
@@ -42,6 +44,15 @@ const toggleSearchDropdown = (e) => {
       countriesStore.secondSelectedDropdownIsShown = !countriesStore.secondSelectedDropdownIsShown
       countriesStore.firstSelectedDropdownIsShown = false
     }
+    if(!countriesStore.firstSelectedDropdownIsShown || !countriesStore.secondSelectedDropdownIsShown) {
+      countriesStore.firstSearchedCountry = ''
+      countriesStore.secondSearchedCountry = ''
+    }
+    nextTick(() => {
+    if (searchInput.value) {
+      searchInput.value.focus();
+    }
+  });
 }
 
 const selectCountry = (e, dropdownType) => {
@@ -81,6 +92,7 @@ const fetchData = async () => {
 
 onMounted(() => {
     fetchData()
+    
 })
 
 </script>
