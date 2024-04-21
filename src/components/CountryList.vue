@@ -11,18 +11,17 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from 'vue'
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCountriesStore } from '../stores/countriesStore'
 import CountryItem from './CountryItem.vue'
-import LoadingSpinner from './LoadingSpinner.vue';
+import LoadingSpinner from './LoadingSpinner.vue'
 
 const countriesStore = useCountriesStore()
 const router = useRouter();
 
 const goToCountryDetails = (cca2) => {
   router.push(`/${cca2}`);
-
 }
 
 const getFilteredCountries = computed(() => {
@@ -31,23 +30,6 @@ const getFilteredCountries = computed(() => {
   } else {
     return countriesStore.filterByRegion(countriesStore.filter)
   }
-})
-
-const fetchData = async () => {
-  countriesStore.isLoading = true;
-  try {
-    const response = await fetch('https://restcountries.com/v3.1/all')
-    const data = await response.json()
-    countriesStore.countriesData = data.sort((a, b) => a.name.common.localeCompare(b.name.common))
-  } catch (error) {
-    console.error('Error fetching data:', error)
-  } finally {
-    countriesStore.isLoading = false
-  }
-}
-
-onMounted(() => {
-  fetchData()
 })
 
 </script>

@@ -28,9 +28,11 @@
             </div>     
         </div>
     </header>
+    <RouterView />
 </template>
 
 <script setup>
+import { RouterView } from 'vue-router'
 import { RouterLink } from 'vue-router'
 import { Icon } from '@iconify/vue'
 import { useCountriesStore } from '../stores/countriesStore'
